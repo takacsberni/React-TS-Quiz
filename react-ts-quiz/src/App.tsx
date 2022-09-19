@@ -92,7 +92,7 @@ const App = () => {
         />
             ) : null}
 
-        {!gameOver && !loading && userAnswers.length === number+1 && userAnswers.length !== TOTAL_QUESTION-1 ? (
+        {!gameOver && !loading && userAnswers.length === number+1 && number !== TOTAL_QUESTION - 1 ? (
         <button className="next" onClick={nextQuestion}> Next one </button>
             ): null
         }
