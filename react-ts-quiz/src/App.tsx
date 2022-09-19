@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import QuestionCard from "./components/QuestionCard";
 
+const TOTAL_QUESTION = 10;
+
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [questions, setQuestions] = useState([]);
@@ -28,7 +30,14 @@ const App = () => {
         <button className="start" onClick={startQuiz}> Let's start!  </button>
         <p className="score">Score: </p>
         <p> Loading Questions... </p>
-        <QuestionCard />
+        <QuestionCard
+            questionNr={number + 1} {/*because they start from 0*/}
+            totalQuestions={TOTAL_QUESTION}
+            question={questions[number].question}
+            answers = {questions[number].answers}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            callback={checkAnswer}
+        />
         <button className="next" onClick={nextQuestion}> Next one </button>
     </div>
   );
