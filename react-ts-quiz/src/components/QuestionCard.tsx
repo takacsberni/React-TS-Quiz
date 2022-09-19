@@ -2,20 +2,34 @@ import React from "react";
 
 type Props = {
     question: string;
-    answer: string[];
+    answers: string[];
     callback: any;
-    userAnswer: string;
+    userAnswer: boolean;
     questionNr: number;
     totalQuestions: number;
 }
 const QuestionCard: React.FC<Props> = ({
     question,
-    answer,
+    answers,
     callback,
     userAnswer,
     questionNr,
     totalQuestions,
-}) =>
-    <div> Question Card </div>;
+}) => (
+    <div>
+        <p className="number">
+            Question: {questionNr} / {totalQuestions}
+        </p>
+        <p dangerouslySetInnerHTML={ {__html: question }} />
+        <div>
+            {answers.map(answer => (
+                <div>
+                    <button disabled={userAnswer} onClick={callback} ></button>
+                    <span dangerouslySetInnerHTML={ {__html: answer}} />
+                </div>
+            ))}
+        </div>
+    </div>
+    )
 
 export default QuestionCard;
