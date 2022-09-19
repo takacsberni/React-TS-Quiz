@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 //Types
-import {QuestionState, Difficulty, fetchQuizQuestions} from "./API";
+import {Difficulty, fetchQuizQuestions, QuestionState} from "./API";
 //Components
-import QuestionCard from "./components/QuestionCard";
 
 type AnswerObject = {
     question: string;
@@ -21,9 +20,24 @@ const App = () => {
     const [score, setScore] = useState(0);
     const [gameOver, setGameOver] = useState(true);
 
-    console.log(fetchQuizQuestions(TOTAL_QUESTION, Difficulty.EASY ));
+    // console.log(fetchQuizQuestions(TOTAL_QUESTION, Difficulty.EASY ));
+    console.log(questions);
 
-    const startTrivia = async () => {};
+    const startTrivia = async () => {
+        setLoading(true); //when we click the button we trigger the API fetch, so we loading something
+        setGameOver(false);
+
+        const newQuestions = await fetchQuizQuestions(
+            TOTAL_QUESTION,
+            Difficulty.EASY
+        )
+
+        setQuestions(newQuestions);
+        setScore(0);
+        setUserAnswers([]);
+        setNumber(0);
+        setLoading(false); //because we don't load anymore
+    };
 
     const startQuiz = async () => {
 
@@ -39,7 +53,7 @@ const App = () => {
   return (
     <div className="App">
         <h1> REACT QUIZ </h1>
-        <button className="start" onClick={startQuiz}> Let's start!  </button>
+        <button className="start" onClick={startTrivia}> Let's start!  </button>
         <p className="score">Score: </p>
         <p> Loading Questions... </p>
         {/*<QuestionCard*/}
