@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 //Types
 import {Difficulty, fetchQuizQuestions, QuestionState} from "./API";
 //Components
+import QuestionCard from "./components/QuestionCard";
 
 type AnswerObject = {
     question: string;
@@ -58,16 +59,16 @@ const App = () => {
         ): null}
         {!gameOver ? <p className="score">Score: </p> : null}
         {loading ? <p> Loading Questions... </p> : null}
-
-
-        {/*<QuestionCard*/}
-        {/*    questionNr={number + 1} /!*because they start from 0*!/*/}
-        {/*    totalQuestions={TOTAL_QUESTION}*/}
-        {/*    question={questions[number].question}*/}
-        {/*    answers = {questions[number].answers}*/}
-        {/*    userAnswer={userAnswers ? userAnswers[number] : undefined}*/}
-        {/*    callback={checkAnswer}*/}
-        {/*/>*/}
+        {!loading && !gameOver ? (
+        <QuestionCard
+            questionNr={number + 1} 
+            totalQuestions={TOTAL_QUESTION}
+            question={questions[number].question}
+            answers = {questions[number].answers}
+            userAnswer={userAnswers ? userAnswers[number] : undefined}
+            callback={checkAnswer}
+        />
+            ) : null}
         <button className="next" onClick={nextQuestion}> Next one </button>
     </div>
   );
