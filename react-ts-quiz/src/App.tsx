@@ -61,7 +61,7 @@ const App = () => {
         {loading ? <p> Loading Questions... </p> : null}
         {!loading && !gameOver ? (
         <QuestionCard
-            questionNr={number + 1} 
+            questionNr={number + 1}
             totalQuestions={TOTAL_QUESTION}
             question={questions[number].question}
             answers = {questions[number].answers}
@@ -69,6 +69,8 @@ const App = () => {
             callback={checkAnswer}
         />
             ) : null}
+
+        {!gameOver && !loading && userAnswers.length === number+1}
         <button className="next" onClick={nextQuestion}> Next one </button>
     </div>
   );
