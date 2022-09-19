@@ -57,9 +57,9 @@ const App = () => {
             <button className="start" onClick={startTrivia}> Let's start!  </button>
         ): null}
         {!gameOver ? <p className="score">Score: </p> : null}
+        {loading ? <p> Loading Questions... </p> : null}
 
 
-        <p> Loading Questions... </p>
         {/*<QuestionCard*/}
         {/*    questionNr={number + 1} /!*because they start from 0*!/*/}
         {/*    totalQuestions={TOTAL_QUESTION}*/}
