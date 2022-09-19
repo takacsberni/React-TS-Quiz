@@ -63,6 +63,13 @@ const App = () => {
     }
 
     const nextQuestion = () => {
+        //move on to the next question if it's not the last
+        const nextQuestion = number + 1;
+        if (nextQuestion === TOTAL_QUESTION) {
+            setGameOver(true);
+        } else {
+            setNumber(nextQuestion);
+        }
 
     }
 
