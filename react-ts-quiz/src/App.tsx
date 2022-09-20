@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {Difficulty, fetchQuizQuestions, QuestionState} from "./API";
 //Components
 import QuestionCard from "./components/QuestionCard";
+import { GlobalStyle} from "./App.style";
 
 export type AnswerObject = {
     question: string;
@@ -74,6 +75,8 @@ const App = () => {
     }
 
   return (
+      <>
+          <GlobalStyle />
     <div className="App">
         <h1> REACT QUIZ </h1>
         {gameOver || userAnswers.length === TOTAL_QUESTION ? (
@@ -97,6 +100,7 @@ const App = () => {
             ): null
         }
     </div>
+      </>
   );
 }
 
